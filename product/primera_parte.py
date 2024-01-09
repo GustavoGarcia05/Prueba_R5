@@ -1,11 +1,18 @@
 # %%
 import pandas as pd
 import json
+import os
+
 
 #-----EXTRACCION-----#
 
 #Lectura del archivo en formato JSON
-ruta_archivo_origen='../data/taylor_swift_spotify.json'
+directorio_actual= os.getcwd()
+directorio_datos= os.path.join(directorio_actual,'data')
+print(directorio_actual)
+nombre_archivo_origen ='taylor_swift_spotify.json'
+
+ruta_archivo_origen= os.path.join(directorio_datos,nombre_archivo_origen)
 
 with open(ruta_archivo_origen, "r", encoding="utf8") as json_file:
     data = json.load(json_file)
@@ -41,7 +48,9 @@ dataset_df.reset_index(inplace=True, drop=True)
 #-----CARGA-----#
 
 #Exportacion del dataframe final como archivo .csv
-ruta_archivo_destino='../product/dataset.csv'
+
+directorio_productos= os.path.join(directorio_actual,'product')
+nombre_archivo_destino ='dataset.csv'
+
+ruta_archivo_destino=os.path.join(directorio_productos,nombre_archivo_destino)
 dataset_df.to_csv(ruta_archivo_destino,index=False)
-
-
